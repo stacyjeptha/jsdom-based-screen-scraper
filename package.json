@@ -1,0 +1,9 @@
+{
+    "name": "scraper",
+    "dependencies": {
+        "connect": "*",
+        "express": "*",
+        "ahr": "*",
+        "jsdom": "*"
+    }
+}

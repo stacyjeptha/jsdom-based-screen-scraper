@@ -31,8 +31,9 @@ Searcher.prototype.search = function(query, collector) {
 
 	console.log('Connecting to... ' + url);
 	
-	request({uri: url, method: 'GET', headers: self.headers, timeout: 10000}, function(err, response, html) {
+	request({uri: url, method: 'GET', headers: self.headers, timeout: 1000}, function(err, response, html) {
 		if (err) {
+			console.log(err);
 			self.onError({error: err, searcher: self});
 			self.onComplete({searcher: self});			
 		} else {
@@ -65,6 +66,7 @@ Searcher.prototype.onComplete = function(searcher) {
 }
 
 Searcher.prototype.onError = function(error) {
+	console.log(error);
 	this.emit('error', error);
 }
 

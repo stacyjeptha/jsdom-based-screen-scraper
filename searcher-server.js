@@ -1,7 +1,6 @@
-var Connect = require('connect');
+var Connect = require('express')();
 
-function books(app){
-	app.get('/:query', function(req, res, next) {
+	Connect.get('/:query', function(req, res, next) {
 
 		res.writeHead(200, { 'Content-Type': 'text/html' });
 
@@ -15,10 +14,8 @@ function books(app){
 		rediff.search(escape(req.params.query));
 
 	});
-}
 
-function main(app){
-    app.get('/', function(req, res){
+    Connect.get('/', function(req, res){
         var examples = [
             '/users',
             '/users.json',
@@ -35,11 +32,7 @@ function main(app){
         });
         res.end(body, 'utf8');
     });
-}
 
-
-var server = Connect.createServer();
-server.use('/books/', Connect.router(books));
-server.use(Connect.router(main));
+var server = Connect;//.createServer();
 server.listen(3000);
 console.log('Server listening to localhost:3000');
